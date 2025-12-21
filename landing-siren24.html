@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>법무법인 파트너 | 상품 홍보페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+            background-color: #ffffff;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 반응형 컨테이너 */
+        .landing-container {
+            max-width: 740px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* 테이블 기반 레이아웃 */
+        .landing-table {
+            width: 100%;
+            max-width: 740px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .landing-table td {
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+        }
+
+        /* 통이미지 스타일 */
+        .full-image {
+            width: 100%;
+            max-width: 740px;
+            height: auto;
+            display: block;
+            border: 0;
+        }
+
+        /* 이미지 컨테이너 (버튼 위치 지정용) */
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 740px;
+            display: block;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            max-width: 740px;
+            height: auto;
+            display: block;
+            border: 0;
+        }
+
+        /* 투명 버튼 */
+        .transparent-button {
+            position: absolute;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .transparent-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* 모바일 반응형 스타일 */
+        @media screen and (max-width: 768px) {
+            .landing-container {
+                width: 100%;
+                padding: 0;
+            }
+
+            .landing-table {
+                width: 100%;
+            }
+
+            .full-image,
+            .image-wrapper,
+            .image-wrapper img {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* 작은 모바일 화면 대응 */
+        @media screen and (max-width: 480px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .landing-container {
+                width: 100%;
+            }
+        }
+    </style>
+    <script>
+        // 이미지 로드 후 버튼 위치 조정 (반응형 대응)
+        function updateButtonPosition() {
+            var img = document.getElementById('apply-image');
+            var button = document.getElementById('consult-button');
+            
+            if (img && button) {
+                // 원본 이미지 좌표: 410,651,1474,859
+                var originalLeft = 410;
+                var originalTop = 651;
+                var originalRight = 1474;
+                var originalBottom = 859;
+                
+                // 원본 이미지 크기와 표시 크기
+                var originalWidth = img.naturalWidth;
+                var originalHeight = img.naturalHeight;
+                var displayWidth = img.offsetWidth;
+                var displayHeight = img.offsetHeight;
+                
+                // 비율 계산
+                var scaleX = displayWidth / originalWidth;
+                var scaleY = displayHeight / originalHeight;
+                
+                // 버튼 위치 및 크기 계산
+                var buttonLeft = originalLeft * scaleX;
+                var buttonTop = originalTop * scaleY;
+                var buttonWidth = (originalRight - originalLeft) * scaleX;
+                var buttonHeight = (originalBottom - originalTop) * scaleY;
+                
+                // 버튼 스타일 적용
+                button.style.left = buttonLeft + 'px';
+                button.style.top = buttonTop + 'px';
+                button.style.width = buttonWidth + 'px';
+                button.style.height = buttonHeight + 'px';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var img = document.getElementById('apply-image');
+            var button = document.getElementById('consult-button');
+            
+            if (img && button) {
+                img.addEventListener('load', updateButtonPosition);
+                
+                // 이미지가 이미 로드된 경우
+                if (img.complete) {
+                    updateButtonPosition();
+                }
+                
+                // 윈도우 리사이즈 시 버튼 위치 재조정
+                var resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(updateButtonPosition, 100);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- 740px 고정 컨테이너 -->
+    <div class="landing-container">
+        <!-- 테이블 기반 레이아웃 -->
+        <table class="landing-table" cellpadding="0" cellspacing="0" border="0">
+            <!-- 섹션 1: 메인 배너 (통이미지) -->
+            <tr>
+                <td>
+                    <img src="images/pc/h-1.png" alt="법무법인 파트너 메인 배너" class="full-image">
+                    <!-- 이미지맵 사용 예시:
+                    <img src="images/pc/h-1.png" alt="법무법인 파트너 메인 배너" class="image-map-img" usemap="#mainbanner">
+                    <map name="mainbanner">
+                        <area shape="rect" coords="100,200,300,250" href="https://example.com/apply" alt="상담 신청">
+                    </map>
+                    -->
+                </td>
+            </tr>
+
+            <!-- 섹션 2: 상품 소개 (통이미지) -->
+            <tr>
+                <td>
+                    <img src="images/pc/h-2.png" alt="법무법인 파트너 서비스 소개" class="full-image">
+                </td>
+            </tr>
+
+            <!-- 섹션 3: 상품 특징 (통이미지) -->
+            <tr>
+                <td>
+                    <img src="images/pc/h-3.png" alt="법무법인 파트너 전문 변호사 상담" class="full-image">
+                </td>
+            </tr>
+
+            <!-- 섹션 4: 프로세스 (통이미지) -->
+            <tr>
+                <td>
+                    <img src="images/pc/h-4.png" alt="법무법인 파트너 상담 프로세스" class="full-image">
+                </td>
+            </tr>
+
+            <!-- 섹션 5: 성공 사례 (통이미지) -->
+            <tr>
+                <td>
+                    <img src="images/pc/h-5.png" alt="법무법인 파트너 성공 사례" class="full-image">
+                </td>
+            </tr>
+
+            <!-- 섹션 6: 신청 안내 (투명 버튼) -->
+            <tr>
+                <td>
+                    <div class="image-wrapper">
+                        <img src="images/pc/h-10.png" alt="법무법인 파트너 상담 신청" id="apply-image">
+                        <a href="https://lawmariel.co.kr/#contact" class="transparent-button" id="consult-button" title="상담문의신청" aria-label="상담문의신청"></a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
